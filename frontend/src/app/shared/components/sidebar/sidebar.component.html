@@ -1,0 +1,50 @@
+<aside
+  class="h-[calc(100vh-5rem)] w-64 bg-blue-600 text-white flex flex-col rounded-tr-2xl rounded-br-2xl shadow-lg"
+>
+  <!-- Navigation Links -->
+  <nav class="flex-1 px-4 pt-6 space-y-3 text-sm">
+
+    <!-- Dashboard -->
+    <a
+      routerLink="/admin/dashboard"
+      routerLinkActive="bg-blue-700 text-white"
+      class="w-full flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-500 transition"
+    >
+      <img src="/icons/material-symbols-light_home.svg" alt="Dashboard Icon" class="w-5 h-5" />
+      <span>Dashboard</span>
+    </a>
+
+    <!-- Create Delivery -->
+    <a
+      routerLink="/admin/create-parcel"
+      routerLinkActive="bg-blue-700 text-white"
+      class="w-full flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-500 transition"
+    >
+      <span class="text-xl">➕</span>
+      <span>Create Delivery Order</span>
+    </a>
+
+    <!-- View Parcels -->
+    <a
+    
+      routerLink="/admin/view-parcels"
+      routerLinkActive="bg-blue-700 text-white"
+      class="w-full flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-blue-500 transition"
+    >
+      <img src="/icons/arcticons_post-parcels-mail (1).svg" alt="Parcels Icon" class="w-5 h-5" />
+      <span>View Parcels</span>
+    </a>
+
+  </nav>
+
+  <!-- Logout Button -->
+  <div class="px-4 py-6">
+    <!-- <button
+      (click)="logout()"
+      class="w-full flex items-center justify-center gap-2 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-full transition"
+    >
+      <img src="/icons/mdi_logout.svg" alt="Logout Icon" class="w-5 h-5" />
+      <span>Logout</span>
+    </button> -->
+  </div>
+</aside>

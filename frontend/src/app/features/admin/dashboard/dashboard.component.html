@@ -1,0 +1,47 @@
+<!-- Sticky Topbar -->
+<header class="sticky top-0 z-50 bg-white shadow h-16">
+  <app-dashboard-topbar></app-dashboard-topbar>
+</header>
+
+<!-- Fixed Sidebar -->
+<aside class="fixed top-16 left-0 w-64 h-[calc(100vh-64px)] z-40 bg-white shadow">
+  <app-sidebar></app-sidebar>
+</aside>
+
+<!-- Main Dashboard Content -->
+<main class="ml-64 mt-5 px-6 py-4 bg-[#f3f8ff] min-h-[calc(100vh-64px)] w-[calc(100vw-16rem)] overflow-auto space-y-10">
+
+<!-- Stat Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mb-6">
+  <app-stat-card
+    title="Total Users"
+    [value]="503"
+    iconUrl="/icons/teenyicons_users-solid.svg"
+  ></app-stat-card>
+  <app-stat-card
+    title="Orders Delivered"
+    [value]="500"
+    iconUrl="/icons/Group.svg"
+  ></app-stat-card>
+  <app-stat-card
+    title="In-Transit"
+    [value]="10"
+    iconUrl="/icons/solar_delivery-line-duotone.svg"
+  ></app-stat-card>
+</div>
+
+
+ 
+  <!-- Parcel Distribution (Pie Chart) -->
+  <section class="flex flex-col items-center gap-4">
+    <h2 class="text-xl font-semibold text-blue-900">Parcel Distribution</h2>
+    <app-pie-chart
+      [delivered]="parcelChartData.delivered"
+      [inTransit]="parcelChartData.inTransit"
+    ></app-pie-chart>
+  </section>
+
+  <!-- Parcel Table -->
+  <app-parcel-table></app-parcel-table>
+</main>
+

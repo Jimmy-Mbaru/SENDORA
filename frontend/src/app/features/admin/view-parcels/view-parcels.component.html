@@ -1,0 +1,50 @@
+<!-- Sticky Topbar -->
+<header class="sticky top-0 z-50 bg-white shadow h-16">
+  <app-dashboard-topbar></app-dashboard-topbar>
+</header>
+
+<!-- Fixed Sidebar -->
+<aside class="fixed top-16 left-0 w-64 h-[calc(100vh-64px)] z-40 bg-white shadow">
+  <app-sidebar></app-sidebar>
+</aside>
+
+<!-- Main Content -->
+<div class="ml-64 pt-10 p-6 bg-[#f3f8ff] min-h-screen">
+  <div class="bg-white rounded-3xl shadow-xl w-full p-8 border border-blue-100">
+    <h2 class="text-3xl font-bold text-center text-blue-800 mb-6">📦 All Parcels</h2>
+
+    <div class="overflow-x-auto rounded-xl border border-gray-200">
+      <table class="min-w-full divide-y divide-gray-200 text-sm bg-white">
+        <thead class="bg-blue-50 text-left">
+          <tr>
+            <th class="px-6 py-3 font-semibold text-gray-700">Parcel ID</th>
+            <th class="px-6 py-3 font-semibold text-gray-700">Pickup</th>
+            <th class="px-6 py-3 font-semibold text-gray-700">Destination</th>
+            <th class="px-6 py-3 font-semibold text-gray-700">Status</th>
+            <th class="px-6 py-3 font-semibold text-gray-700">Action</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100">
+          <tr *ngFor="let parcel of parcels" class="hover:bg-blue-50 transition">
+            <td class="px-6 py-4 text-gray-800 font-medium">{{ parcel.id }}</td>
+            <td class="px-6 py-4">{{ parcel.pickup }}</td>
+            <td class="px-6 py-4">{{ parcel.destination }}</td>
+            <td class="px-6 py-4">
+              <select [(ngModel)]="parcel.status" (change)="updateStatus(parcel, parcel.status)"
+                class="border border-gray-300 rounded px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                <option value="in-transit">In Transit</option>
+                <option value="delivered">Delivered</option>
+              </select>
+            </td>
+            <td class="px-6 py-4">
+              <a *ngIf="parcel.status === 'in-transit'" [routerLink]="['/admin/view-parcel', parcel.id]"
+                class="bg-blue-600 text-white text-xs px-4 py-2 rounded-full shadow hover:bg-blue-700 transition">
+                Track
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
