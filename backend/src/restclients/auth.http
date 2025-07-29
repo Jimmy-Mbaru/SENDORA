@@ -1,0 +1,39 @@
+### Register a New User
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+  "name": "Cole Palmer",
+  "email": "jamesbande999@gmail.com",
+  "password": "123789"
+}
+
+### Login with Correct Credentials
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "jamesbande999@gmail.com",
+  "password": "123789"
+}
+
+
+### Login with Invalid Password
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "testuser@example.com",
+  "password": "wrongpassword"
+}
+
+
+### Register Duplicate Email (Should Fail)
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+  "name": "Another User",
+  "email": "testuser@example.com",
+  "password": "newpassword"
+}

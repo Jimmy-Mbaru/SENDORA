@@ -1,0 +1,29 @@
+@ADMIN_JWT =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlMzY0N2ExZC1iMzE2LTQ2MTAtOGRlZC05NWUyODY5MzdiZjAiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NTM3OTI0MzcsImV4cCI6MTc1NDM5NzIzN30.l4X81gJWcQvaNXhOy_RNY_ndIiJfms1JGWcNpNlpYJw
+@USER_JWT =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlMzVhNTdjZS1mNmEzLTQwMjItYmRmMS02NWVhYTY2ZTg3ZjgiLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc1Mzc5MjQ5MSwiZXhwIjoxNzU0Mzk3MjkxfQ.k0TYPCozQBgkcPVJWaUSeO_edbdHn-pxuMA3T-hoAbM
+
+### Get My Profile (Logged-in user)
+GET http://localhost:3000/users/me
+Authorization: Bearer {{USER_JWT}}
+
+
+### Update My Profile
+PATCH http://localhost:3000/users/me
+Authorization: Bearer {{USER_JWT}}
+Content-Type: application/json
+
+{
+  "name": "Jim Jam",
+  "email": "jimjam@example.com",
+  "cellphone": "+254700123456",
+  "paypal": "paypal.me/jimjam"
+}
+
+
+### Get All Users (ADMIN only)
+GET http://localhost:3000/users
+Authorization: Bearer {{ADMIN_JWT}}
+
+
+### Get User Parcel History
+GET http://localhost:3000/users/REPLACE_USER_ID/parcels
+Authorization: Bearer {{ADMIN_JWT}}  

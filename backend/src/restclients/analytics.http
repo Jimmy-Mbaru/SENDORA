@@ -1,0 +1,5 @@
+@ADMIN_JWT =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlMzY0N2ExZC1iMzE2LTQ2MTAtOGRlZC05NWUyODY5MzdiZjAiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NTM3OTE2NTQsImV4cCI6MTc1NDM5NjQ1NH0.UIW8-3rkjBKk5_ilcPQH-qqis78lvisi0LSXsqvCffM
+
+### Get Admin Dashboard Analytics (delivered, inTransit, totalUsers, pie chart data)
+GET http://localhost:3000/analytics/dashboard
+Authorization: Bearer {{ADMIN_JWT}}

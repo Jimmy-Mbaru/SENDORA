@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <img src="cid:logo" alt="Sendora Logo" height="60" style="margin-bottom: 20px;" />
+        <h2>Your Parcel Has Arrived</h2>
+    </div>
+    <p>Hello <strong>
+            <%= user.name %>
+        </strong>,</p>
+    <p>Your parcel from <strong>
+            <%= parcel.senderName %>
+        </strong> has arrived. Please visit the pickup location to collect it.</p>
+    <p>Make sure to bring your ID for verification.</p>
+</body>
+
+</html>

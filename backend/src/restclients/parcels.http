@@ -1,0 +1,36 @@
+@JWT_TOKEN = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlMzY0N2ExZC1iMzE2LTQ2MTAtOGRlZC05NWUyODY5MzdiZjAiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NTM2OTYwNjcsImV4cCI6MTc1NDMwMDg2N30.8Gieq67e8mPEAJgPNW8cpLFHovF6lrbFSDhFUF3nioA
+
+### 1. Admin: Create a Parcel
+POST http://localhost:3000/parcels
+Authorization: Bearer {{JWT_TOKEN}}
+Content-Type: application/json
+
+{
+  "description": "Electronics package",
+  "weightCategory": "MEDIUM",
+  "pickupLocationId": "REPLACE_PICKUP_LOCATION_ID",
+  "deliveryLocationId": "REPLACE_DELIVERY_LOCATION_ID",
+  "senderId": "REPLACE_SENDER_USER_ID",
+  "recipientId": "REPLACE_RECIPIENT_USER_ID",
+  "estimatedArrival": "2025-08-10T15:00:00.000Z"
+}
+
+
+### 2. Get All Parcels (Admin OR User)
+GET http://localhost:3000/parcels
+Authorization: Bearer {{JWT_TOKEN}}
+
+
+### 3. Get Specific Parcel by ID
+GET http://localhost:3000/parcels/REPLACE_PARCEL_ID
+Authorization: Bearer {{JWT_TOKEN}}
+
+
+### 4. Admin: Update Parcel Status
+PATCH http://localhost:3000/parcels/REPLACE_PARCEL_ID/status
+Authorization: Bearer {{JWT_TOKEN}}
+Content-Type: application/json
+
+{
+  "status": "DELIVERED"
+}

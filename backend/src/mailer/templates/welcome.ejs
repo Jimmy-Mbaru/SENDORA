@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Welcome to Sendora!</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: Arial, sans-serif;
+      padding: 0;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 30px 20px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .header {
+      text-align: center;
+      padding-bottom: 20px;
+    }
+
+    .logo {
+      width: 80px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #0D99FF;
+      margin: 0;
+    }
+
+    p {
+      line-height: 1.6;
+      font-size: 16px;
+      margin: 15px 0;
+    }
+
+    .btn {
+      background-color: #0D99FF;
+      color: white;
+      padding: 12px 20px;
+      text-decoration: none;
+      border-radius: 6px;
+      display: inline-block;
+      margin-top: 25px;
+      font-weight: bold;
+    }
+
+    .btn:hover {
+      background-color: #007dd6;
+    }
+
+    .footer {
+      margin-top: 40px;
+      font-size: 13px;
+      color: #777;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="cid:logo" alt="Sendora Logo" class="logo" />
+      <h2>Welcome to Sendora!</h2>
+    </div>
+
+    <p>Hello <strong><%= user.name %></strong>,</p>
+
+    <p>We're excited to have you on board. Start sending parcels with ease, speed, and reliability.</p>
+
+    <p>If you have any questions, feel free to reach out.</p>
+
+    <a href="https://sendora.example.com" class="btn">Visit Dashboard</a>
+
+    <div class="footer">
+      &copy; <%= new Date().getFullYear() %> Sendora Courier. All rights reserved.
+    </div>
+  </div>
+</body>
+</html>

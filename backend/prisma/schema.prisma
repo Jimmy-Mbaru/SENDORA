@@ -1,0 +1,81 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum WeightCategory {
+  LIGHT
+  MEDIUM
+  HEAVY
+}
+
+enum ParcelStatus {
+  IN_TRANSIT
+  DELIVERED
+}
+
+model User {
+  id              String   @id @default(uuid())
+  name            String
+  email           String   @unique
+  password        String
+  role            Role     @default(USER)
+  cellphone       String?  
+  paypal          String?  
+  parcelsSent     Parcel[] @relation("Sender")
+  parcelsReceived Parcel[] @relation("Recipient")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Parcel {
+  id                 String         @id @default(uuid())
+  description        String
+  weightCategory     WeightCategory
+  pickupLocation     Location       @relation("PickupLocation", fields: [pickupLocationId], references: [id])
+  pickupLocationId   String
+  deliveryLocation   Location       @relation("DeliveryLocation", fields: [deliveryLocationId], references: [id])
+  deliveryLocationId String
+  sender             User           @relation("Sender", fields: [senderId], references: [id])
+  senderId           String
+  recipient          User           @relation("Recipient", fields: [recipientId], references: [id])
+  recipientId        String
+  status             ParcelStatus   @default(IN_TRANSIT)
+  estimatedArrival   DateTime?
+  priceAtCreation    Decimal?       @db.Decimal(10, 2)
+  currency           String         @default("KES")
+  createdAt          DateTime       @default(now())
+  updatedAt          DateTime       @updatedAt
+
+  @@index([senderId])
+  @@index([recipientId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model Location {
+  id              String   @id @default(uuid())
+  name            String   @unique
+  latitude        Float?
+  longitude       Float?
+  createdAt       DateTime @default(now())
+
+  pickupParcels   Parcel[] @relation("PickupLocation")
+  deliveryParcels Parcel[] @relation("DeliveryLocation")
+}

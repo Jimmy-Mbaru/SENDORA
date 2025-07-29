@@ -1,0 +1,14 @@
+@JWT =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlMzY0N2ExZC1iMzE2LTQ2MTAtOGRlZC05NWUyODY5MzdiZjAiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NTM2OTYwNjcsImV4cCI6MTc1NDMwMDg2N30.8Gieq67e8mPEAJgPNW8cpLFHovF6lrbFSDhFUF3nioA
+
+### Create New Location (ADMIN only)
+POST http://localhost:3000/locations
+Authorization: Bearer {{JWT}}
+Content-Type: application/json
+
+{
+  "name": "Nairobi"
+}
+
+
+### Get All Locations (Public)
+GET http://localhost:3000/locations

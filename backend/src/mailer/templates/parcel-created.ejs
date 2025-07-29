@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        .info {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <img src="cid:logo" alt="Sendora Logo" height="60" style="margin-bottom: 20px;" />
+        <h2>Parcel Sent Successfully</h2>
+    </div>
+    <p>Hi <strong>
+            <%= user.name %>
+        </strong>,</p>
+    <p>Your parcel has been created and is on its way!</p>
+
+    <div class="info">
+        <p><strong>Sender:</strong>
+            <%= parcel.senderName %>
+        </p>
+        <p><strong>Receiver:</strong>
+            <%= parcel.receiverName %>
+        </p>
+        <p><strong>ETA:</strong>
+            <%= parcel.eta %>
+        </p>
+        <p><strong>Total Cost:</strong> KES <%= parcel.price %>
+        </p>
+    </div>
+
+    <p>Track your parcel in your dashboard anytime.</p>
+</body>
+
+</html>
