@@ -1,4 +1,4 @@
-@JWT =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlMzY0N2ExZC1iMzE2LTQ2MTAtOGRlZC05NWUyODY5MzdiZjAiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NTM2OTYwNjcsImV4cCI6MTc1NDMwMDg2N30.8Gieq67e8mPEAJgPNW8cpLFHovF6lrbFSDhFUF3nioA
+@JWT =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlMzY0N2ExZC1iMzE2LTQ2MTAtOGRlZC05NWUyODY5MzdiZjAiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3NTM4Mjc3NDksImV4cCI6MTc1NDQzMjU0OX0.9l7Yfe3A0HDXp13ueo5wEsnuh2oYOWskqcJ2VhXJSYs
 
 ### Create New Location (ADMIN only)
 POST http://localhost:3000/locations
@@ -6,7 +6,7 @@ Authorization: Bearer {{JWT}}
 Content-Type: application/json
 
 {
-  "name": "Nairobi"
+  "name": "Tharaka Nithi"
 }
 
 

@@ -22,12 +22,8 @@
         <img src="cid:logo" alt="Sendora Logo" height="60" style="margin-bottom: 20px;" />
         <h2>Your Parcel Has Arrived</h2>
     </div>
-    <p>Hello <strong>
-            <%= user.name %>
-        </strong>,</p>
-    <p>Your parcel from <strong>
-            <%= parcel.senderName %>
-        </strong> has arrived. Please visit the pickup location to collect it.</p>
+    <p>Hello <strong><%= receiver %></strong>,</p>
+    <p>Your parcel from <strong><%= sender %></strong> has arrived. Please visit the pickup location to collect it.</p>
     <p>Make sure to bring your ID for verification.</p>
 </body>
 

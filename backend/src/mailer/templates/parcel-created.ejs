@@ -26,23 +26,14 @@
         <img src="cid:logo" alt="Sendora Logo" height="60" style="margin-bottom: 20px;" />
         <h2>Parcel Sent Successfully</h2>
     </div>
-    <p>Hi <strong>
-            <%= user.name %>
-        </strong>,</p>
+    <p>Hi <strong><%= sender %></strong>,</p>
     <p>Your parcel has been created and is on its way!</p>
 
     <div class="info">
-        <p><strong>Sender:</strong>
-            <%= parcel.senderName %>
-        </p>
-        <p><strong>Receiver:</strong>
-            <%= parcel.receiverName %>
-        </p>
-        <p><strong>ETA:</strong>
-            <%= parcel.eta %>
-        </p>
-        <p><strong>Total Cost:</strong> KES <%= parcel.price %>
-        </p>
+        <p><strong>Sender:</strong> <%= sender %></p>
+        <p><strong>Receiver:</strong> <%= receiver %></p>
+        <p><strong>ETA:</strong> <%= eta %></p>
+        <p><strong>Total Cost:</strong> KES <%= price %></p>
     </div>
 
     <p>Track your parcel in your dashboard anytime.</p>

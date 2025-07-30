@@ -1,10 +1,11 @@
 import { Routes } from '@angular/router';
 import { LandingPageComponent } from './features/landing/landing-page.component';
 import { DashboardComponent } from './features/admin/dashboard/dashboard.component';
-
+import { authGuard } from './services/auth.guard';
 
 export const routes: Routes = [
   { path: '', component: LandingPageComponent },
+
   {
     path: 'login',
     loadComponent: () =>
@@ -17,45 +18,51 @@ export const routes: Routes = [
   },
   {
     path: 'user',
-    loadChildren: () =>
-      import('./user/user.routes').then((m) => m.USER_ROUTES),
+    redirectTo: 'user-dashboard',
+    pathMatch: 'full',
   },
+
   {
     path: 'admin/profile',
+    canActivate: [authGuard],
+    data: { role: 'ADMIN' },
     loadComponent: () =>
       import('./shared/components/profile/profile.component').then((m) => m.ProfileComponent),
   },
-
   {
     path: 'admin/create-parcel',
+    canActivate: [authGuard],
+    data: { role: 'ADMIN' },
     loadComponent: () =>
       import('./features/admin/create-parcel-form/create-parcel-form.component').then(m => m.CreateParcelFormComponent),
   },
-
   {
     path: 'admin/view-parcels',
+    canActivate: [authGuard],
+    data: { role: 'ADMIN' },
     loadComponent: () =>
       import('./features/admin/view-parcels/view-parcels.component').then(m => m.ViewParcelsComponent),
   },
-
   {
     path: 'admin/dashboard',
+    canActivate: [authGuard],
+    data: { role: 'ADMIN' },
     loadComponent: () =>
       import('./features/admin/dashboard/dashboard.component').then(m => m.DashboardComponent),
   },
-
   {
     path: 'admin/view-parcel/:id',
-    loadComponent: () => import('./shared/components/view-parcel-details/view-parcel-details.component').then(m => m.ViewParcelDetailsComponent)
+    canActivate: [authGuard],
+    data: { role: 'ADMIN' },
+    loadComponent: () =>
+      import('./shared/components/view-parcel-details/view-parcel-details.component').then(m => m.ViewParcelDetailsComponent)
   },
-
-
   {
     path: 'admin',
-    component: DashboardComponent, // shell layout
+    component: DashboardComponent,
+    canActivate: [authGuard],
+    data: { role: 'ADMIN' },
     children: [
-
-
       {
         path: '',
         loadComponent: () =>
@@ -71,13 +78,12 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/admin/parcel-table/parcel-table.component').then((m) => m.ParcelTableComponent),
       },
-
     ],
   },
-
-
   {
     path: 'user-dashboard',
+    canActivate: [authGuard],
+    data: { role: 'USER' },
     loadComponent: () => import('./features/user/user-dashboard/user-dashboard.component').then(m => m.UserDashboardComponent),
     children: [
       {
@@ -91,21 +97,13 @@ export const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'sent' // default route
+        redirectTo: 'sent'
       },
-
       {
         path: 'view-parcel/:id',
         loadComponent: () => import('./shared/components/view-parcel-details/view-parcel-details.component').then(m => m.ViewParcelDetailsComponent)
       }
-
-
-
     ]
   },
-
-
-
-
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];

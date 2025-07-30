@@ -1,8 +1,6 @@
 import {
   IsEnum,
-  IsISO8601,
   IsNotEmpty,
-  IsString,
   IsUUID,
 } from 'class-validator';
 import { WeightCategory } from 'generated/prisma';
@@ -12,7 +10,7 @@ export class CreateParcelDto {
   description: string;
 
   @IsEnum(WeightCategory)
-  weightCategory: WeightCategory;
+  weightCategory: 'LIGHT' | 'MEDIUM' | 'HEAVY';
 
   @IsUUID()
   pickupLocationId: string;
@@ -25,7 +23,4 @@ export class CreateParcelDto {
 
   @IsUUID()
   recipientId: string;
-
-  @IsISO8601()
-  estimatedArrival: string; // ISO Date string
 }

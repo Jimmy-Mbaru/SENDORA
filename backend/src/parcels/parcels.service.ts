@@ -27,7 +27,7 @@ export class ParcelsService {
   }
 
   private calculateDistanceKm(lat1: number, lon1: number, lat2: number, lon2: number): number {
-    const R = 6371; // Earth's radius in km
+    const R = 6371; // Radius of Earth in km
     const dLat = this.toRadians(lat2 - lat1);
     const dLon = this.toRadians(lon2 - lon1);
     const a =
@@ -46,6 +46,18 @@ export class ParcelsService {
   private getDistancePrice(distanceKm: number): number {
     const ratePer10Km = 10;
     return Math.ceil(distanceKm / 10) * ratePer10Km;
+  }
+
+  private calculateEta(distanceKm: number): Date {
+    const eta = new Date();
+    if (distanceKm < 50) {
+      eta.setDate(eta.getDate() + 1);
+    } else if (distanceKm < 150) {
+      eta.setDate(eta.getDate() + 2);
+    } else {
+      eta.setDate(eta.getDate() + 3);
+    }
+    return eta;
   }
 
   async createParcel(dto: CreateParcelDto) {
@@ -82,12 +94,12 @@ export class ParcelsService {
     const distancePrice = this.getDistancePrice(distanceKm);
     const totalPrice = weightPrice + distancePrice;
 
-    const etaDate = new Date(dto.estimatedArrival);
+    const etaDate = this.calculateEta(distanceKm);
 
     const parcel = await this.prisma.parcel.create({
       data: {
         ...dto,
-        status: ParcelStatus.IN_TRANSIT, 
+        status: ParcelStatus.IN_TRANSIT,
         estimatedArrival: etaDate,
         priceAtCreation: totalPrice,
       },
@@ -109,11 +121,19 @@ export class ParcelsService {
   }
 
   async getAllParcels(user: any) {
+    const baseQuery = {
+      include: {
+        pickupLocation: { select: { name: true } },
+        deliveryLocation: { select: { name: true } },
+      },
+    };
+
     if (user.role === 'ADMIN') {
-      return this.prisma.parcel.findMany();
+      return this.prisma.parcel.findMany(baseQuery);
     }
 
     return this.prisma.parcel.findMany({
+      ...baseQuery,
       where: {
         OR: [
           { senderId: user.userId },
@@ -165,6 +185,7 @@ export class ParcelsService {
         subject: 'Parcel Delivered!',
         template: 'status-delivered-sender',
         context: {
+          sender: sender.name,
           receiver: recipient.name,
         },
       });
@@ -175,6 +196,7 @@ export class ParcelsService {
         template: 'status-delivered-receiver',
         context: {
           receiver: recipient.name,
+          sender: sender.name,
         },
       });
     }

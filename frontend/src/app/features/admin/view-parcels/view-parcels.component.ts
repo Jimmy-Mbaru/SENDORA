@@ -1,39 +1,69 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { DashboardTopbarComponent } from "../../../shared/components/dashboard-topbar/dashboard-topbar.component";
-import { SidebarComponent } from "../../../shared/components/sidebar/sidebar.component";
 import { RouterLink } from '@angular/router';
-
+import { DashboardTopbarComponent } from '../../../shared/components/dashboard-topbar/dashboard-topbar.component';
+import { SidebarComponent } from '../../../shared/components/sidebar/sidebar.component';
+import { ParcelService } from '../../../services/parcel.service';
 
 @Component({
   standalone: true,
   selector: 'app-view-parcels',
-  imports: [CommonModule, FormsModule, DashboardTopbarComponent, SidebarComponent, RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink, DashboardTopbarComponent, SidebarComponent],
   templateUrl: './view-parcels.component.html',
 })
-export class ViewParcelsComponent {
-  parcels = [
-    {
-      id: 'PCL-001',
-      pickup: 'Nairobi',
-      destination: 'Mombasa',
-      status: 'in-transit',
-    },
-    {
-      id: 'PCL-002',
-      pickup: 'Kisumu',
-      destination: 'Eldoret',
-      status: 'delivered',
-    },
-  ];
+export class ViewParcelsComponent implements OnInit {
+  parcels: any[] = [];
 
-  updateStatus(parcel: any, newStatus: string) {
-    parcel.status = newStatus;
+  constructor(private parcelService: ParcelService) { }
+
+  ngOnInit(): void {
+    this.fetchParcels();
   }
 
-  trackParcel(parcelId: string) {
-    // Placeholder
-    alert(`Tracking Parcel ${parcelId}...`);
+  fetchParcels() {
+    this.parcelService.getAllParcels().subscribe({
+      next: (data) => {
+        this.parcels = data.map(parcel => ({
+          id: parcel.id,
+          pickup: parcel.pickupLocation?.name || '—',
+          destination: parcel.deliveryLocation?.name || '—',
+          status: this.mapBackendStatusToUI(parcel.status),
+        }));
+      },
+      error: (err) => {
+        console.error('Failed to load parcels:', err);
+      },
+    });
+  }
+
+  mapBackendStatusToUI(status: string): string {
+    switch (status) {
+      case 'IN_TRANSIT': return 'in-transit';
+      case 'DELIVERED': return 'delivered';
+      default: return status.toLowerCase();
+    }
+  }
+
+  mapUIStatusToBackend(status: string): string {
+    switch (status) {
+      case 'in-transit': return 'IN_TRANSIT';
+      case 'delivered': return 'DELIVERED';
+      default: return status.toUpperCase();
+    }
+  }
+
+  updateStatus(parcel: any, newStatus: string) {
+    const backendStatus = this.mapUIStatusToBackend(newStatus) as 'IN_TRANSIT' | 'DELIVERED';
+
+    this.parcelService.updateParcelStatus(parcel.id, backendStatus).subscribe({
+      next: () => {
+        console.log(`Parcel ${parcel.id} status updated to ${backendStatus}`);
+      },
+      error: (err) => {
+        console.error('Status update failed:', err);
+        alert('Failed to update parcel status.');
+      },
+    });
   }
 }

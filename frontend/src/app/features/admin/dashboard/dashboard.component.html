@@ -15,17 +15,17 @@
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mb-6">
   <app-stat-card
     title="Total Users"
-    [value]="503"
+    [value]="totalUsers"
     iconUrl="/icons/teenyicons_users-solid.svg"
   ></app-stat-card>
   <app-stat-card
     title="Orders Delivered"
-    [value]="500"
+    [value]="delivered"
     iconUrl="/icons/Group.svg"
   ></app-stat-card>
   <app-stat-card
     title="In-Transit"
-    [value]="10"
+    [value]="inTransit"
     iconUrl="/icons/solar_delivery-line-duotone.svg"
   ></app-stat-card>
 </div>
@@ -42,6 +42,6 @@
   </section>
 
   <!-- Parcel Table -->
-  <app-parcel-table></app-parcel-table>
+<app-parcel-table [parcels]="recentParcels"></app-parcel-table>
 </main>
 
