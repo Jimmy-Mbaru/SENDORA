@@ -29,6 +29,15 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./shared/components/profile/profile.component').then((m) => m.ProfileComponent),
   },
+
+  {
+    path: 'user-dashboard/profile',
+    canActivate: [authGuard],
+    data: { role: 'USER' },
+    loadComponent: () =>
+      import('./shared/components/profile/profile.component').then((m) => m.ProfileComponent),
+  },
+
   {
     path: 'admin/create-parcel',
     canActivate: [authGuard],

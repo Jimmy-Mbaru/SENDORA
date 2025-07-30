@@ -6,14 +6,9 @@
   </div>
 
   <!-- Profile Avatar -->
-  <a
-    routerLink="/admin/profile"
-    class="p-1.5 hover:bg-gray-100 rounded-full transition border border-gray-300"
-  >
-    <img
-      src="/icons/iconamoon_profile-circle-bold.svg"
-      alt="Profile"
-      class="w-9 h-9 rounded-full object-cover"
-    />
+  <a (click)="goToProfile()"
+    class="p-1.5 hover:bg-gray-100 rounded-full transition border border-gray-300 cursor-pointer">
+    <img src="/icons/iconamoon_profile-circle-bold.svg" alt="Profile" class="w-9 h-9 rounded-full object-cover" />
   </a>
+
 </header>

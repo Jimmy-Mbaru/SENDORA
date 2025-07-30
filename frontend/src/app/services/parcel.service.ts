@@ -6,7 +6,7 @@ import { environment } from '../../environments/environment';
 export class ParcelService {
   private apiUrl = `${environment.apiUrl}/parcels`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   createParcel(data: {
     senderId: string;
@@ -26,4 +26,9 @@ export class ParcelService {
   updateParcelStatus(parcelId: string, status: 'IN_TRANSIT' | 'DELIVERED') {
     return this.http.patch(`${this.apiUrl}/${parcelId}/status`, { status });
   }
+
+  getParcelById(id: string) {
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
+  }
+
 }

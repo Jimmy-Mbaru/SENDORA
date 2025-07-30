@@ -125,8 +125,11 @@ export class ParcelsService {
       include: {
         pickupLocation: { select: { name: true } },
         deliveryLocation: { select: { name: true } },
+        sender: { select: { name: true } },
+        recipient: { select: { name: true } },
       },
     };
+
 
     if (user.role === 'ADMIN') {
       return this.prisma.parcel.findMany(baseQuery);
@@ -144,20 +147,28 @@ export class ParcelsService {
   }
 
   async getParcelById(id: string, user: any) {
-    const parcel = await this.prisma.parcel.findUnique({ where: { id } });
+    const parcel = await this.prisma.parcel.findUnique({
+      where: { id },
+      include: {
+        pickupLocation: { select: { name: true, latitude: true, longitude: true } },
+        deliveryLocation: { select: { name: true, latitude: true, longitude: true } },
+        sender: { select: { name: true } },
+        recipient: { select: { name: true } },
+      },
+    });
 
     if (!parcel) throw new NotFoundException('Parcel not found');
 
-    if (
-      user.role !== 'ADMIN' &&
-      parcel.senderId !== user.userId &&
-      parcel.recipientId !== user.userId
-    ) {
+    const isAdmin = user.role === 'ADMIN';
+    const isAssociated = parcel.senderId === user.userId || parcel.recipientId === user.userId;
+
+    if (!isAdmin && !isAssociated) {
       throw new ForbiddenException('Access denied');
     }
 
     return parcel;
   }
+
 
   async updateStatus(id: string, dto: UpdateStatusDto) {
     const parcel = await this.prisma.parcel.findUnique({ where: { id } });

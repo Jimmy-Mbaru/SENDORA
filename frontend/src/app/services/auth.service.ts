@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
 export class AuthService {
   private apiUrl = `${environment.apiUrl}/auth`;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
 
   login(credentials: { email: string; password: string }) {
     return this.http.post<{ access_token: string }>(`${this.apiUrl}/login`, credentials);
@@ -43,4 +43,30 @@ export class AuthService {
       return null;
     }
   }
+
+  getCurrentUser(): { userId: string; role: 'ADMIN' | 'USER'; email: string } | null {
+    const token = this.getToken();
+    if (!token) return null;
+
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return {
+        userId: payload.sub,
+        role: payload.role,
+        email: payload.email,
+      };
+    } catch (err) {
+      return null;
+    }
+  }
+
+  getMyProfile() {
+    return this.http.get(`${environment.apiUrl}/users/me`);
+  }
+
+  updateUserProfile(data: { name?: string; cellphone?: string; paypal?: string }) {
+    return this.http.patch(`${environment.apiUrl}/users/me`, data);
+  }
+
+
 }

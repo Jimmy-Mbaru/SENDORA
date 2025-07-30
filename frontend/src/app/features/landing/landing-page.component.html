@@ -1,170 +1,498 @@
-<div class="min-h-screen flex flex-col">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sendora - Fast, Reliable Parcel Delivery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #f8faff 0%, #e8f2ff 50%, #f0f7ff 100%);
+        }
+
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+        }
+
+        .floating-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .pulse-glow {
+            animation: pulse-glow 2s infinite;
+        }
+
+        @keyframes pulse-glow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+            }
+
+            50% {
+                box-shadow: 0 0 30px rgba(59, 130, 246, 0.6);
+            }
+        }
+
+        .step-line {
+            position: relative;
+        }
+
+        .step-line::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -2rem;
+            width: 2rem;
+            height: 2px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            transform: translateY(-50%);
+        }
+
+        .step-line:last-child::after {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .step-line::after {
+                display: none;
+            }
+        }
+
+        .stats-counter {
+            font-weight: 800;
+            font-size: 2rem;
+            background: linear-gradient(135deg, #3b82f6, #1e40af);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .feature-icon {
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+            border: 2px solid rgba(59, 130, 246, 0.1);
+        }
+
+        .cta-gradient {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+
+        .cta-gradient:hover {
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
+        }
+
+        .section-divider {
+            background: linear-gradient(90deg, transparent, #e5e7eb, transparent);
+            height: 1px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col bg-white">
 
     <!-- Sticky Topbar -->
-    <header class="sticky top-0 z-50 bg-white shadow">
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100">
         <app-topbar></app-topbar>
     </header>
 
     <!-- Main Content -->
     <main class="flex-grow">
-        <!-- Hero Section -->
-        <div class="bg-white px-6 pt-6 pb-20 md:pt-8 md:pb-24">
-            <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-16">
+        <!-- Enhanced Hero Section -->
+        <div class="hero-gradient px-6 pt-12 pb-24 md:pt-16 md:pb-32 relative overflow-hidden">
+            <!-- Background Elements -->
+            <div class="absolute inset-0 opacity-30">
+                <div
+                    class="absolute top-20 left-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl animate-pulse">
+                </div>
+                <div class="absolute top-40 right-10 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl animate-pulse"
+                    style="animation-delay: 2s;"></div>
+                <div class="absolute bottom-20 left-1/2 w-80 h-80 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl animate-pulse"
+                    style="animation-delay: 4s;"></div>
+            </div>
 
+            <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-16 relative z-10">
                 <!-- Left: Hero Content -->
-                <div class="flex-1 text-center md:text-left">
-                    <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight text-gray-900">
-                        Fast, Reliable Parcel Delivery
+                <div class="flex-1 text-center lg:text-left">
+                    <div
+                        class="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-6">
+                        <span class="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
+                        Trusted by 500+ users
+                    </div>
+
+                    <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight">
+                        <span
+                            class="bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
+                            Fast, Reliable
+                        </span>
+                        <br />
+                        <span class="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+                            Parcel Delivery
+                        </span>
                     </h1>
-                    <p class="text-gray-600 text-lg md:text-xl mb-10 max-w-xl mx-auto md:mx-0">
-                        Sendora gets your packages from pickup to destination with live tracking and email updates.
+
+                    <p class="text-gray-600 text-xl md:text-2xl mb-12 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Sendora gets your packages from pickup to destination with
+                        <span class="font-semibold text-blue-600">live tracking</span> and
+                        <span class="font-semibold text-blue-600">email updates</span>.
                         <br class="hidden md:block" />
                         Join thousands of happy senders and receivers today.
                     </p>
 
-                    <!-- CTA Buttons -->
-                    <div class="flex flex-wrap justify-center md:justify-start gap-4 mb-12">
-                        <a routerLink="/register"
-                            class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg flex items-center gap-2 shadow-md transition">
-                            <img src="/icons/material-symbols_person-add.svg" alt="User" class="w-5 h-5" />
-                            Get Started
+                    <!-- Enhanced CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 mb-16">
+                        <a href="/register"
+                            class="group px-8 py-4 cta-gradient text-white font-semibold rounded-2xl flex items-center justify-center gap-3 transition-all duration-300 transform hover:scale-105">
+                            <img src="/icons/material-symbols_person-add.svg" alt="User"
+                                class="w-6 h-6 group-hover:scale-110 transition-transform" />
+                            Get Started Free
+                            <div
+                                class="w-2 h-2 bg-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                            </div>
                         </a>
-                        <a routerLink="/login"
-                            class="px-6 py-3 border border-blue-600 text-blue-600 font-semibold rounded-lg flex items-center gap-2 shadow-sm hover:shadow-md transition">
-                            <img src="/icons/material-symbols_login-rounded.svg" alt="Login" class="w-5 h-5" />
-                            Login
+                        <a href="/login"
+                            class="px-8 py-4 border-2 border-blue-600 text-blue-600 font-semibold rounded-2xl flex items-center justify-center gap-3 hover:bg-blue-50 transition-all duration-300 backdrop-blur-sm bg-white/70">
+                            <img src="/icons/material-symbols_login-rounded.svg" alt="Login" class="w-6 h-6" />
+                            Sign In
                         </a>
                     </div>
 
-                    <!-- Feature Highlights -->
-                    <div class="grid grid-cols-2 gap-6 max-w-md mx-auto md:mx-0">
-                        <div class="flex items-center gap-3">
-                            <img src="/icons/icon-park-solid_time.svg" alt="Tracking Icon" class="w-6 h-6" />
-                            <span>Real-time Tracking</span>
+                    <!-- Enhanced Feature Highlights -->
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-2xl mx-auto lg:mx-0">
+                        <div
+                            class="flex flex-col items-center lg:items-start gap-3 p-4 rounded-xl bg-white/60 backdrop-blur-sm border border-white/20">
+                            <div class="feature-icon w-12 h-12 rounded-full flex items-center justify-center">
+                                <img src="/icons/icon-park-solid_time.svg" alt="Tracking Icon" class="w-6 h-6" />
+                            </div>
+                            <span class="font-medium text-gray-800">Real-time Tracking</span>
                         </div>
-                        <div class="flex items-center gap-3">
-                            <img src="/icons/arcticons_moto-secure.svg" alt="Secure Icon" class="w-6 h-6" />
-                            <span>Secure Delivery</span>
+                        <div
+                            class="flex flex-col items-center lg:items-start gap-3 p-4 rounded-xl bg-white/60 backdrop-blur-sm border border-white/20">
+                            <div class="feature-icon w-12 h-12 rounded-full flex items-center justify-center">
+                                <img src="/icons/arcticons_moto-secure.svg" alt="Secure Icon" class="w-6 h-6" />
+                            </div>
+                            <span class="font-medium text-gray-800">Secure Delivery</span>
                         </div>
-                        <div class="flex items-center gap-3">
-                            <img src="/icons/mdi_bell.svg" alt="Notification Icon" class="w-6 h-6" />
-                            <span>Email Updates</span>
+                        <div
+                            class="flex flex-col items-center lg:items-start gap-3 p-4 rounded-xl bg-white/60 backdrop-blur-sm border border-white/20">
+                            <div class="feature-icon w-12 h-12 rounded-full flex items-center justify-center">
+                                <img src="/icons/mdi_bell.svg" alt="Notification Icon" class="w-6 h-6" />
+                            </div>
+                            <span class="font-medium text-gray-800">Email Updates</span>
                         </div>
-                        <div class="flex items-center gap-3">
-                            <img src="icons/fluent_location-live-24-filled.svg" alt="Location Icon" class="w-6 h-6" />
-                            <span>Live Location</span>
+                        <div
+                            class="flex flex-col items-center lg:items-start gap-3 p-4 rounded-xl bg-white/60 backdrop-blur-sm border border-white/20">
+                            <div class="feature-icon w-12 h-12 rounded-full flex items-center justify-center">
+                                <img src="icons/fluent_location-live-24-filled.svg" alt="Location Icon"
+                                    class="w-6 h-6" />
+                            </div>
+                            <span class="font-medium text-gray-800">Live Location</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Right: Hero Image -->
-                <div class="flex-1 max-w-2xl">
-                    <img src="/icons/Sendora-land 1 (1).svg" alt="Hero Image"
-                        class="w-full h-auto object-contain md:max-w-[700px] md:h-[420px]" />
+                <!-- Right: Circular Hero Image -->
+                <div class="flex-1 flex justify-end items-center">
+                    <div
+                        class="w-[500px] h-[500px] rounded-full bg-white shadow-2xl border-4 border-blue-200 p-4 flex items-center justify-center">
+                        <img src="/icons/Sendora-land 1 (1).svg" alt="Hero Image"
+                            class="w-full h-full object-contain rounded-full" />
+                    </div>
                 </div>
-
 
             </div>
         </div>
 
-        <!-- Impact Metrics -->
-        <div class="mt-20 mb-20 px-4">
-            <div class="bg-gray-100 p-8 rounded-2xl shadow-md max-w-6xl mx-auto">
-                <p class="text-sm text-gray-700 mb-6 font-semibold text-center">Our Impact So Far:</p>
+        <!-- Section Divider -->
+        <div class="section-divider"></div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+        <!-- Enhanced Feature Highlights Cards Section -->
+        <section class="py-24 px-6 bg-white relative">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                        Why Choose
+                        <span
+                            class="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">Sendora?</span>
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Experience the future of parcel delivery with our innovative features designed for your
+                        convenience
+                    </p>
+                </div>
 
-                    <!-- Metric 1 -->
-                    <div class="flex flex-col items-center">
-                        <img src="/icons/ix_zone.svg" alt="Zones" class="w-6 h-6 mb-2" />
-                        <span class="text-lg font-bold text-gray-800">35+ Delivery Zones</span>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Enhanced Card 1 -->
+                    <div
+                        class="card-hover bg-gradient-to-br from-blue-50 to-indigo-100 p-8 rounded-3xl shadow-lg border border-blue-100">
+                        <div class="flex items-center mb-6">
+                            <div
+                                class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mr-4 shadow-lg">
+                                <img src="/icons/icon-park_weight.svg" alt="Weight"
+                                    class="w-7 h-7 filter brightness-0 invert" />
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">Weight-Based Pricing</h3>
+                        </div>
+                        <p class="text-gray-700 mb-4 leading-relaxed">Choose Light, Medium, or Heavy based on your
+                            parcel's size and weight.</p>
+                        <div class="space-y-2">
+                            <div class="flex items-center text-sm text-gray-600">
+                                <div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                                Transparent pricing model
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                                No hidden costs
+                            </div>
+                            <div class="flex items-center text-sm text-gray-600">
+                                <div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                                Affordable for everyone
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Metric 2 -->
-                    <div class="flex flex-col items-center">
-                        <img src="/icons/carbon_delivery-parcel.svg" alt="Parcels" class="w-6 h-6 mb-2" />
-                        <span class="text-lg font-bold text-gray-800">10K+ Parcels Delivered</span>
+                    <!-- Enhanced Card 2 -->
+                    <div
+                        class="card-hover bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-3xl shadow-lg border border-blue-100">
+                        <div class="flex items-center mb-6">
+                            <div
+                                class="w-14 h-14 bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl flex items-center justify-center mr-4 shadow-lg">
+                                <img src="/icons/fluent_location-live-24-filled.svg" alt="Tracking"
+                                    class="w-7 h-7 filter brightness-0 invert" />
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">Live Parcel Tracking</h3>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed">Track your delivery in real-time and receive updates
+                            via email and dashboard with GPS precision.</p>
                     </div>
 
-                    <!-- Metric 3 -->
-                    <div class="flex flex-col items-center">
-                        <img src="/icons/teenyicons_users-solid.svg" alt="Users" class="w-6 h-6 mb-2" />
-                        <span class="text-lg font-bold text-gray-800">500+ Happy Users</span>
+                    <!-- Enhanced Card 3 -->
+                    <div
+                        class="card-hover bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-3xl shadow-lg border border-blue-100">
+                        <div class="flex items-center mb-6">
+                            <div
+                                class="w-14 h-14 bg-gradient-to-br from-blue-700 to-blue-800 rounded-2xl flex items-center justify-center mr-4 shadow-lg">
+                                <img src="/icons/ix_zone.svg" alt="Coverage"
+                                    class="w-7 h-7 filter brightness-0 invert" />
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">Extensive Coverage</h3>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed">Serving over 35+ delivery zones with safe and efficient
+                            parcel movement nationwide.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced Impact Metrics Section -->
+        <section class="py-24 px-6 bg-gradient-to-br from-gray-50 to-blue-50">
+            <div class="max-w-7xl mx-auto text-center">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Our Impact So Far</h2>
+                <p class="text-gray-600 mb-16 text-xl max-w-3xl mx-auto">We've helped thousands deliver safely, swiftly,
+                    and with confidence across the nation.</p>
+
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Enhanced Metric Cards -->
+                    <div class="card-hover bg-white p-8 rounded-3xl shadow-lg border border-gray-100">
+                        <div
+                            class="bg-gradient-to-br from-blue-100 to-blue-200 p-4 rounded-2xl w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                            <img src="/icons/ix_zone.svg" alt="Zones" class="w-8 h-8" />
+                        </div>
+                        <div class="stats-counter mb-2">35+</div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Delivery Zones</h3>
+                        <p class="text-sm text-gray-600">Coverage across major regions</p>
                     </div>
 
-                    <!-- Metric 4 -->
-                    <div class="flex flex-col items-center">
-                        <img src="/icons/icon-park_success.svg" alt="Success Rate" class="w-6 h-6 mb-2" />
-                        <span class="text-lg font-bold text-gray-800">99.9% Delivery Success Rate</span>
+                    <div class="card-hover bg-white p-8 rounded-3xl shadow-lg border border-gray-100">
+                        <div
+                            class="bg-gradient-to-br from-blue-100 to-blue-200 p-4 rounded-2xl w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                            <img src="/icons/carbon_delivery-parcel.svg" alt="Parcels" class="w-8 h-8" />
+                        </div>
+                        <div class="stats-counter mb-2">10K+</div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Deliveries</h3>
+                        <p class="text-sm text-gray-600">Trusted with thousands of parcels</p>
                     </div>
 
+                    <div class="card-hover bg-white p-8 rounded-3xl shadow-lg border border-gray-100">
+                        <div
+                            class="bg-gradient-to-br from-blue-100 to-blue-200 p-4 rounded-2xl w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                            <img src="/icons/teenyicons_users-solid.svg" alt="Users" class="w-8 h-8" />
+                        </div>
+                        <div class="stats-counter mb-2">500+</div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Happy Users</h3>
+                        <p class="text-sm text-gray-600">Growing base of satisfied customers</p>
+                    </div>
+
+                    <div class="card-hover bg-white p-8 rounded-3xl shadow-lg border border-gray-100">
+                        <div
+                            class="bg-gradient-to-br from-blue-100 to-blue-200 p-4 rounded-2xl w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                            <img src="/icons/icon-park_success.svg" alt="Success Rate" class="w-8 h-8" />
+                        </div>
+                        <div class="stats-counter mb-2">99.9%</div>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Success Rate</h3>
+                        <p class="text-sm text-gray-600">Exceptionally high delivery rate</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced How It Works -->
+        <div class="bg-white py-24 px-6">
+            <div class="max-w-7xl mx-auto text-center">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">How Sendora Works</h2>
+                <p class="text-gray-600 mb-16 text-xl max-w-4xl mx-auto">From drop-off to doorstep in 5 simple steps.
+                    Real-time tracking and instant email alerts included for complete peace of mind.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
+                    <div
+                        class="step-line bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-3xl shadow-lg border border-blue-100 relative">
+                        <div
+                            class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 text-white font-bold text-lg shadow-lg">
+                            1</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Register</h3>
+                        <p class="text-gray-600 leading-relaxed">Sign up and create your Sendora account in minutes.</p>
+                    </div>
+
+                    <div
+                        class="step-line bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-3xl shadow-lg border border-blue-100 relative">
+                        <div
+                            class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 text-white font-bold text-lg shadow-lg">
+                            2</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Drop Off</h3>
+                        <p class="text-gray-600 leading-relaxed">Hand over your parcel at any Sendora drop station.</p>
+                    </div>
+
+                    <div
+                        class="step-line bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-3xl shadow-lg border border-blue-100 relative">
+                        <div
+                            class="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-6 text-white font-bold text-lg shadow-lg">
+                            3</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Confirmation</h3>
+                        <p class="text-gray-600 leading-relaxed">Get an email receipt with sender, receiver details,
+                            ETA, and total cost.</p>
+                    </div>
+
+                    <div
+                        class="step-line bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-3xl shadow-lg border border-blue-100 relative">
+                        <div
+                            class="w-12 h-12 bg-gradient-to-br from-blue-700 to-blue-800 rounded-full flex items-center justify-center mx-auto mb-6 text-white font-bold text-lg shadow-lg">
+                            4</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">In Transit</h3>
+                        <p class="text-gray-600 leading-relaxed">Track the live route of your parcel right from your
+                            dashboard.</p>
+                    </div>
+
+                    <div
+                        class="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-3xl shadow-lg border border-blue-100">
+                        <div
+                            class="w-12 h-12 bg-gradient-to-br from-blue-800 to-blue-900 rounded-full flex items-center justify-center mx-auto mb-6 text-white font-bold text-lg shadow-lg">
+                            5</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Delivered</h3>
+                        <p class="text-gray-600 leading-relaxed">Recipient is notified and you receive delivery
+                            confirmation.</p>
+                    </div>
                 </div>
             </div>
         </div>
 
+        <!-- Enhanced Pricing Model -->
+        <div class="bg-gradient-to-br from-blue-50 to-indigo-100 py-24 px-6">
+            <div class="max-w-7xl mx-auto text-center">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Our Transparent Pricing</h2>
+                <p class="text-gray-600 mb-16 text-xl max-w-4xl mx-auto">Your price is calculated based on distance and
+                    weight category. Simple, fair, and transparent - no surprises.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div
+                        class="card-hover bg-white rounded-3xl p-8 shadow-xl border-t-4 border-blue-500 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-20 h-20 bg-blue-100 rounded-full -mr-10 -mt-10"></div>
+                        <div
+                            class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                            <span class="text-white font-bold text-xl">L</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 text-gray-900">Light (0 - 2kg)</h3>
+                        <p class="text-gray-600 leading-relaxed">Ideal for letters, small boxes, or envelopes.
+                            Affordable and fast delivery.</p>
+                    </div>
+
+                    <div
+                        class="card-hover bg-white rounded-3xl p-8 shadow-xl border-t-4 border-blue-500 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-20 h-20 bg-blue-100 rounded-full -mr-10 -mt-10"></div>
+                        <div
+                            class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                            <span class="text-white font-bold text-xl">M</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 text-gray-900">Medium (2 - 10kg)</h3>
+                        <p class="text-gray-600 leading-relaxed">Perfect for shoes, clothes, gadgets. Balanced for size
+                            and speed.</p>
+                    </div>
+
+                    <div
+                        class="card-hover bg-white rounded-3xl p-8 shadow-xl border-t-4 border-blue-500 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-20 h-20 bg-blue-100 rounded-full -mr-10 -mt-10"></div>
+                        <div
+                            class="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                            <span class="text-white font-bold text-xl">H</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 text-gray-900">Heavy (10kg+)</h3>
+                        <p class="text-gray-600 leading-relaxed">Used for bulkier items, tools, or business deliveries.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Enhanced Delivery Coverage Map -->
+        <div class="bg-gradient-to-br from-gray-50 to-gray-100 py-24 px-6">
+            <div class="max-w-6xl mx-auto text-center">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Delivery Coverage Map</h2>
+                <p class="text-gray-600 mb-16 text-xl max-w-4xl mx-auto">We deliver across multiple regions in the
+                    country with optimized routes for maximum efficiency and speed.</p>
+
+                <div class="relative">
+                    <div
+                        class="pulse-glow rounded-3xl overflow-hidden border-4 border-blue-200 shadow-2xl bg-white p-4">
+                        <img src="/icons/image 1 (1).svg" alt="Sendora Coverage Map"
+                            class="w-full h-auto object-cover rounded-2xl" />
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
-    <!-- How It Works -->
-    <div class="bg-white py-16 px-6">
-        <div class="max-w-6xl mx-auto text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">How Sendora Works</h2>
-            <p class="text-gray-600 mb-12 text-lg">Send your parcel in 5 simple steps. Fast. Reliable. Transparent.</p>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 text-left">
-
-                <!-- Step 1 -->
-                <div class="bg-[#f3f8ff] p-6 rounded-xl shadow-md">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-2">1. Register</h3>
-                    <p class="text-gray-600">Sign up and create your Sendora account with your contact details.</p>
-                </div>
-
-                <!-- Step 2 -->
-                <div class="bg-[#f3f8ff] p-6 rounded-xl shadow-md">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-2">2. Present Parcel</h3>
-                    <p class="text-gray-600">Visit any of our nearest drop-off points. Our agent will record your parcel
-                        info and prep it for delivery.</p>
-                </div>
-
-                <!-- Step 3 -->
-                <div class="bg-[#f3f8ff] p-6 rounded-xl shadow-md">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-2">3. Confirmation</h3>
-                    <p class="text-gray-600">Receive an email with tracking info and parcel receipt details.</p>
-                </div>
-
-                <!-- Step 4 -->
-                <div class="bg-[#f3f8ff] p-6 rounded-xl shadow-md">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-2">4. Transport</h3>
-                    <p class="text-gray-600">Your parcel is shipped using our secure and fast delivery network.</p>
-                </div>
-
-                <!-- Step 5 -->
-                <div class="bg-[#f3f8ff] p-6 rounded-xl shadow-md">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-2">5. Delivered</h3>
-                    <p class="text-gray-600">Parcel reaches the recipient safely. We notify you once delivery is
-                        complete.</p>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-
-    <!-- Delivery Coverage Map -->
-    <div class="bg-gray-100 py-16 px-6">
-        <div class="max-w-5xl mx-auto text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Delivery Coverage Map</h2>
-            <p class="text-gray-600 mb-10">We deliver across multiple regions in the country with optimized routes.</p>
-
-            <div class="rounded-2xl overflow-hidden border border-blue-200 shadow-lg">
-                <img src="/icons/image 1 (1).svg" alt="Sendora Coverage Map" class="w-full h-auto object-cover" />
-            </div>
-        </div>
-    </div>
-
-
-
     <!-- Footer -->
-    <footer>
+    <footer class="mt-auto">
         <app-footer></app-footer>
     </footer>
-</div>
+</body>
+
+</html>
